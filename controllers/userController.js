@@ -114,10 +114,10 @@ module.exports = {
       { $addToSet: { friends: req.params.friendId } },
       { new: true }
     )
-      .populate({
-        path: 'friends',
-        select: '-__v'
-      })
+      // .populate({
+      //   path: 'friends',
+      //   select: '-__v'
+      // })
       .select('-__v')
       .then((updatedUser) =>
         !updatedUser
