@@ -16,8 +16,9 @@ const reactionSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        username: {
-            type: String,
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref:'User',
             required: true,
         },
     },
