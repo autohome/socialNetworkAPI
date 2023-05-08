@@ -1,5 +1,8 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 const Reaction = require('./Reaction');
+const User = require('./User');
+
 
 // Schema to create Post model
 const thoughtSchema = new Schema(
@@ -12,8 +15,9 @@ const thoughtSchema = new Schema(
             type: Date,
             default: Date.now,
         },
-        username: {
-            type: String,
+        userId: {
+            type: Schema.Types.ObjectId,
+            ref:'User',
             required: true,
         },
         reactions: [Reaction],
@@ -32,6 +36,6 @@ thoughtSchema.virtual('reactionCount').get(function () {
 });
 
 // Initialize our Thought model
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;
